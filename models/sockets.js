@@ -1,4 +1,4 @@
-const { userConected, userDesConected, getUsers, getTickets } = require("../contollers/sockets");
+const { userConected, userDesConected, getUsers, getTickets, saveMessage } = require("../contollers/sockets");
 const { checkJWT } = require("../helpers/jwt");
 
 
@@ -27,6 +27,7 @@ class Sockets{
 
 
 
+
         //toDo: validar el JWT
         // si el token no es valido desconectar
 
@@ -43,7 +44,31 @@ class Sockets{
 
         //ToDo: Socket join, uid
 
+
+
+        socket.join(uid);
+
+
         //ToDo: escuchar cuando el cliente emite el mensaje
+
+        socket.on('message-personal',async (payload)=>{
+           const data = await saveMessage(payload);
+            this.io.to(payload.to).emit('mensaje-personal',data);
+            this.io.to(payload.de).emit('mensaje-personal',data);
+
+        })
+
+        
+        // socket.on('message-G',async (payload)=>{
+        //     const data = await saveMessage(payload);
+        //      this.io.to(payload.to).emit('mensaje-G',data);
+        //      this.io.to(payload.de).emit('mensaje-G',data);
+ 
+        //  })
+
+        // this.io.on("mensaje-grupal", socket => {
+        //     socket.join("some-room");
+        //   });
 
         // ToDo: Disconnet
         //marcar en la bd 

@@ -1,6 +1,6 @@
 const Ticket = require('../models/ticket');
 const User = require('../models/user');
-
+const Message =require('../models/message');
 
 const userConected = async (uid)=>{
 
@@ -35,9 +35,22 @@ const getTickets = async () =>{
     return tickets
 }
 
+const saveMessage = async(payload) =>{
+    try{
+        const message = new Message(payload)
+        await message.save();
+        return (message)
+    }
+    catch(error){
+        console.log(error);
+        return false;
+    }
+}
+
 module.exports = {
     userConected,
     userDesConected,
     getUsers,
-    getTickets
+    getTickets,
+    saveMessage
 }
