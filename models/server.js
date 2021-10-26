@@ -46,7 +46,7 @@ class Server{
         //API end
         this.app.use('/api/login', require('../router/auth'))
         this.app.use('/api/mensajes', require('../router/messages'))
-
+        this.app.use('/api/room', require('../router/ticket'))
     }
 
         //setting socket

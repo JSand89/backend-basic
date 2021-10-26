@@ -18,7 +18,7 @@ const UserSchema =Schema({
     online:{
         type:Boolean,
         default:false
-    }
+    },
 });
 
 UserSchema.method('toJSON', function(){
