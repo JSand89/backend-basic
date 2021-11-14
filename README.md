@@ -10,7 +10,7 @@
 ### npm run dev
 
 
-recordar npm i 
+remember npm i 
 
 
 ## seting  .env
